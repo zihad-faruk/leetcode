@@ -1,4 +1,5 @@
-//without stack 
+/******without stack **********/
+
 class Solution {
 
     /**
@@ -41,4 +42,27 @@ class Solution {
 }
 
 
-//with stream_bucket_new
+/*********with stack****/
+class Solution {
+
+    /**
+     * @param String[] $operations
+     * @return Integer
+     */
+    function calPoints($operations) {
+        $s = [];
+        foreach($operations as $op){
+            if($op=='C') 
+                array_pop($s);
+            else if($op=='D')
+                array_push($s,end($s)*2);
+            else if($op=="+")
+                array_push($s,(end($s)+$s[count($s)-2]));
+            else
+                array_push($s,$op);
+        }
+        
+        return array_sum($s);
+        
+    }
+}
